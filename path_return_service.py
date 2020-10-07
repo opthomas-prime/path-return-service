@@ -7,7 +7,7 @@ from bottle import route, run, request
 def index():
     host_header_info = ""
     for header in request.headers.items():
-        if "host" in header[0].lower():
+        if "host" in header[0].lower() or "forwarded" in header[0].lower():
             host_header_info = "%s%s: %s\n" % (host_header_info, header[0], header[1])
     if 'SERVICE_NAME' in os.environ:
         service_name = os.environ['SERVICE_NAME']
